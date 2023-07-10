@@ -42,16 +42,5 @@ after_initialize {
     end
   }
 
-  # admins need to be able to see the direct message chats
-  module ::PMScannerDirectMessage
-    def user_can_access?(user)
-      return true if SiteSetting.pm_scanner_enabled && user.admin?
-      super(user)
-    end
-  end
-
-  class ::DirectMessage
-    prepend PMScannerDirectMessage
-  end
 
 }
